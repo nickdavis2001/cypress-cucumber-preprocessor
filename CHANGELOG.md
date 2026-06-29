@@ -14,6 +14,10 @@ Breaking changes:
 
   - With the recent breaking changes made to Cypress, the following changes to this library would make it even more so. Thus, I am removing this feature for now.
 
+Other changes:
+
+- Add support for Cypress v15.18.0, fixes [#1358](https://github.com/badeball/cypress-cucumber-preprocessor/issues/1358).
+
 ## v25.0.0
 
 Breaking changes:
