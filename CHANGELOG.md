@@ -18,6 +18,8 @@ Other changes:
 
 - Add support for Cypress v15.18.0, fixes [#1358](https://github.com/badeball/cypress-cucumber-preprocessor/issues/1358).
 
+- Handle more corner cases related to reload-behavior, fixes [#1161](https://github.com/badeball/cypress-cucumber-preprocessor/issues/1161).
+
 ## v25.0.0
 
 Breaking changes:
