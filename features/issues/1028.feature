@@ -22,7 +22,7 @@ Feature: non-feature specs
     And a file named "cypress/e2e/spec.js" with:
       """
       it("should work", () => {
-        cy.visit("https://duckduckgo.com/")
+        cy.visit("https://example.org/")
       })
       """
     When I run cypress

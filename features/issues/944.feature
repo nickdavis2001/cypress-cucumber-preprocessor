@@ -17,10 +17,10 @@ Feature: changing domain during a spec
       """
       Feature: a feature
         Scenario: a scenario
-          When I navigate to "https://duckduckgo.com/"
+          When I navigate to "https://example.org/"
 
         Scenario: a scenario
-          When I navigate to "https://google.com/"
+          When I navigate to "https://example.com/"
       """
     And a file named "cypress/support/step_definitions/steps.js" with:
       """

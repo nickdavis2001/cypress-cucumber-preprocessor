@@ -600,11 +600,11 @@ Feature: pretty output
       Given a file named "cypress/e2e/a.feature" with:
         """
         Feature: a feature
-          @env(origin="https://duckduckgo.com/")
+          @env(origin="https://example.org/")
           Scenario: a scenario
             Given a step
 
-          @env(origin="https://google.com/")
+          @env(origin="https://example.com/")
           Scenario: another scenario
             Given another step
         """
@@ -624,11 +624,11 @@ Feature: pretty output
       """
         Feature: a feature
 
-          @env(origin="https://duckduckgo.com/")
+          @env(origin="https://example.org/")
           Scenario: a scenario # cypress/e2e/a.feature:3
             ✔ Given a step     # not available:0
 
-          @env(origin="https://google.com/")
+          @env(origin="https://example.com/")
           Scenario: another scenario # cypress/e2e/a.feature:7
             ✔ Given another step     # not available:0
       """
@@ -639,11 +639,11 @@ Feature: pretty output
         const { Given } = require("@badeball/cypress-cucumber-preprocessor");
 
         Given("a step", function() {
-          cy.visit("https://duckduckgo.com/");
+          cy.visit("https://example.org/");
         });
 
         Given("another step", function() {
-          cy.visit("https://google.com/");
+          cy.visit("https://example.com/");
         });
         """
       When I run cypress
@@ -652,25 +652,25 @@ Feature: pretty output
       """
         Feature: a feature
 
-          @env(origin="https://duckduckgo.com/")
+          @env(origin="https://example.org/")
           Scenario: a scenario # cypress/e2e/a.feature:3
 
         Reloading..
 
         Feature: a feature
 
-          @env(origin="https://duckduckgo.com/")
+          @env(origin="https://example.org/")
           Scenario: a scenario # cypress/e2e/a.feature:3
             ✔ Given a step     # not available:0
 
-          @env(origin="https://google.com/")
+          @env(origin="https://example.com/")
           Scenario: another scenario # cypress/e2e/a.feature:7
 
         Reloading..
 
         Feature: a feature
 
-          @env(origin="https://google.com/")
+          @env(origin="https://example.com/")
           Scenario: another scenario # cypress/e2e/a.feature:7
             ✔ Given another step     # not available:0
       """
@@ -681,7 +681,7 @@ Feature: pretty output
         const { Given } = require("@badeball/cypress-cucumber-preprocessor");
 
         before(() => {
-          cy.visit("https://duckduckgo.com/");
+          cy.visit("https://example.org/");
         });
 
         Given("a step", function() {});
@@ -698,7 +698,7 @@ Feature: pretty output
         const { Given } = require("@badeball/cypress-cucumber-preprocessor");
 
         after(() => {
-          cy.visit("https://duckduckgo.com/");
+          cy.visit("https://example.org/");
         });
 
         Given("a step", function() {});
@@ -711,11 +711,11 @@ Feature: pretty output
       """
         Feature: a feature
 
-          @env(origin="https://duckduckgo.com/")
+          @env(origin="https://example.org/")
           Scenario: a scenario # cypress/e2e/a.feature:3
             ✔ Given a step     # not available:0
 
-          @env(origin="https://google.com/")
+          @env(origin="https://example.com/")
           Scenario: another scenario # cypress/e2e/a.feature:7
             ✔ Given another step     # not available:0
 
@@ -723,7 +723,7 @@ Feature: pretty output
 
         Feature: a feature
 
-          @env(origin="https://google.com/")
+          @env(origin="https://example.com/")
           Scenario: another scenario # cypress/e2e/a.feature:7
             ✔ Given another step     # not available:0
       """
@@ -764,7 +764,7 @@ Feature: pretty output
       """
         Feature: a feature
 
-          @env(origin="https://duckduckgo.com/")
+          @env(origin="https://example.org/")
           Scenario: a scenario # cypress/e2e/a.feature:3
             ✔ Given a step     # not available:0
 
@@ -772,11 +772,11 @@ Feature: pretty output
 
         Feature: a feature
 
-          @env(origin="https://duckduckgo.com/")
+          @env(origin="https://example.org/")
           Scenario: a scenario # cypress/e2e/a.feature:3
             ✔ Given a step     # not available:0
 
-          @env(origin="https://google.com/")
+          @env(origin="https://example.com/")
           Scenario: another scenario # cypress/e2e/a.feature:7
             ✔ Given another step     # not available:0
 
@@ -784,7 +784,7 @@ Feature: pretty output
 
         Feature: a feature
 
-          @env(origin="https://google.com/")
+          @env(origin="https://example.com/")
           Scenario: another scenario # cypress/e2e/a.feature:7
             ✔ Given another step     # not available:0
       """

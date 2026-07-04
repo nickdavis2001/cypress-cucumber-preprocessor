@@ -651,11 +651,11 @@ Feature: messages report
       Given a file named "cypress/e2e/a.feature" with:
         """
         Feature: a feature
-          @env(origin="https://duckduckgo.com/")
+          @env(origin="https://example.org/")
           Scenario: a scenario
             Given a step
 
-          @env(origin="https://google.com/")
+          @env(origin="https://example.com/")
           Scenario: another scenario
             Given another step
         """
@@ -679,11 +679,11 @@ Feature: messages report
         const { Given } = require("@badeball/cypress-cucumber-preprocessor");
 
         Given("a step", function() {
-          cy.visit("https://duckduckgo.com/");
+          cy.visit("https://example.org/");
         });
 
         Given("another step", function() {
-          cy.visit("https://google.com/");
+          cy.visit("https://example.com/");
         });
         """
       When I run cypress
@@ -696,7 +696,7 @@ Feature: messages report
         const { Given } = require("@badeball/cypress-cucumber-preprocessor");
 
         before(() => {
-          cy.visit("https://duckduckgo.com/");
+          cy.visit("https://example.org/");
         });
 
         Given("a step", function() {});
@@ -713,7 +713,7 @@ Feature: messages report
         const { Given } = require("@badeball/cypress-cucumber-preprocessor");
 
         after(() => {
-          cy.visit("https://duckduckgo.com/");
+          cy.visit("https://example.org/");
         });
 
         Given("a step", function() {});

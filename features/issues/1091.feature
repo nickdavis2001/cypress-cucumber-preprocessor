@@ -23,7 +23,7 @@ Feature: pretty output
     And a file named "cypress/support/e2e.js" with:
       """
       before(() => {
-        cy.visit("https://duckduckgo.com/");
+        cy.visit("https://example.org/");
       });
       """
     When I run cypress

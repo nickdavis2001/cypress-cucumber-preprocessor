@@ -25,7 +25,7 @@ Feature: JSON report
     And a file named "cypress/support/e2e.js" with:
       """
       beforeEach(() => {
-        cy.visit("https://duckduckgo.com/");
+        cy.visit("https://example.org/");
       });
       """
     When I run cypress

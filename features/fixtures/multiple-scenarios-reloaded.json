@@ -25,7 +25,7 @@
         ],
         "tags": [
           {
-            "name": "@env(origin=\"https://duckduckgo.com/\")",
+            "name": "@env(origin=\"https://example.org/\")",
             "line": 2
           }
         ],
@@ -54,7 +54,7 @@
         ],
         "tags": [
           {
-            "name": "@env(origin=\"https://google.com/\")",
+            "name": "@env(origin=\"https://example.com/\")",
             "line": 6
           }
         ],

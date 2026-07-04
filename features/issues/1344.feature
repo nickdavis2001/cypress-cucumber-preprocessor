@@ -16,7 +16,7 @@ Feature: JSON report
       """
       Feature: a feature
         Scenario: a scenario
-          When I navigate to "https://duckduckgo.com/"
+          When I navigate to "https://example.org/"
       """
     And a file named "cypress/support/step_definitions/steps.js" with:
       """

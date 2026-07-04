@@ -60,21 +60,20 @@ Feature: html report
       """
     And a file named "cypress/e2e/duckduckgo.feature" with:
       """
-      Feature: duckduckgo.com
+      Feature: example.org
         Scenario: visiting the frontpage
-          When I visit duckduckgo.com
-          Then I should see a search bar
+          When I visit example.org
+          Then I should see a heading
       """
     And a file named "cypress/support/step_definitions/steps.js" with:
       """
       import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
-      When("I visit duckduckgo.com", () => {
-        cy.visit("https://duckduckgo.com/");
+      When("I visit example.org", () => {
+        cy.visit("https://example.org/");
       });
-      Then("I should see a search bar", () => {
-        cy.get("input[type=text]")
-          .should("have.attr", "placeholder")
-          .and("match", /Search without being tracked|Search privately/);
+      Then("I should see a heading", () => {
+        cy.get("h1")
+          .and("contain.text", "Example Domain");
       });
 
       """

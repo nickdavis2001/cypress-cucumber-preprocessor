@@ -33,11 +33,11 @@ Feature: reload-behavior in a retried test
       const { Given } = require("@badeball/cypress-cucumber-preprocessor");
       let attempt = 0;
       Given("a step", function() {
-        if (document.domain !== "duckduckgo.com") {
+        if (document.domain !== "example.org") {
           if (attempt++ === 0) {
             throw "some error";
           } else {
-            cy.visit("https://duckduckgo.com/");
+            cy.visit("https://example.org/");
           }
         } else {
           // 2. retry reloaded.
