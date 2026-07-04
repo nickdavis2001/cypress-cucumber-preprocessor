@@ -115,6 +115,10 @@ export function isPre12() {
   return !isPost12();
 }
 
+export function isPost15() {
+  return parseInt(cypressVersion.split(".")[0], 10) >= 15;
+}
+
 /**
  * Shamelessly copied from the RegExp.escape proposal.
  */

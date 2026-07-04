@@ -1,6 +1,7 @@
 # https://github.com/badeball/cypress-cucumber-preprocessor/issues/1161
 
 @network
+@cypress>=15
 Feature: reload-behavior in a retried test
   Scenario:
     Given additional Cypress configuration
