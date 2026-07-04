@@ -886,65 +886,71 @@ export async function testCaseStartedHandler(
     case "received-envelopes":
     case "test-finished":
     case "run-hook-finished":
-      break;
     case "has-reloaded-received-envelopes":
-      {
-        const iLastTestCaseStarted = state.messages.current.findLastIndex(
-          (message) => message.testCaseStarted,
-        );
-
-        const lastTestCaseStarted =
-          state.messages.current[iLastTestCaseStarted];
-
-        /**
-         * In case of reload during before/beforeEach, this won't be the case.
-         */
-        if (
-          lastTestCaseStarted?.testCaseStarted!.testCaseId === data.testCaseId
-        ) {
-          if (state.pretty.enabled) {
-            await end(state.pretty.writable);
-
-            // Reloading occurred
-            // - right within a step, or
-            // - after a test case
-            // .. so we output an extra newline.
-            if (
-              state.messages.current[state.messages.current.length - 1]
-                .testStepStarted != null ||
-              state.messages.current[state.messages.current.length - 1]
-                .testCaseFinished != null
-            ) {
-              console.log();
-            }
-
-            console.log("  Reloading..");
-
-            const writable = createPrettyStream();
-
-            const broadcaster = createPrettyFormatter(writable);
-
-            for (const message of state.specEnvelopes) {
-              broadcaster.emit("envelope", message);
-            }
-
-            state.pretty = {
-              enabled: true,
-              writable,
-              broadcaster,
-            };
-          }
-
-          // Discard messages of previous test, which is being re-run.
-          state.messages.current = state.messages.current.slice(
-            0,
-            iLastTestCaseStarted,
-          );
-        }
-      }
       break;
     default:
       throw createStateError("testCaseStartedHandler", state.state);
+  }
+
+  const iLastTestCaseStarted = state.messages.current.findLastIndex(
+    (message) => message.testCaseStarted,
+  );
+
+  const lastTestCaseStarted = state.messages.current[iLastTestCaseStarted];
+
+  /**
+   * In case of reload during before/beforeEach, this won't be the case.
+   */
+  if (lastTestCaseStarted?.testCaseStarted!.id === data.id) {
+    if (state.pretty.enabled) {
+      await end(state.pretty.writable);
+
+      // Reloading occurred
+      // - right within a step, or
+      // - after a test case
+      // .. so we output an extra newline.
+      if (
+        state.messages.current[state.messages.current.length - 1]
+          .testStepStarted != null ||
+        state.messages.current[state.messages.current.length - 1]
+          .testCaseFinished != null
+      ) {
+        console.log();
+      }
+
+      console.log("  Reloading..");
+
+      const writable = createPrettyStream();
+
+      const broadcaster = createPrettyFormatter(writable);
+
+      /**
+       * TestCase envelopes are the last types of envelopes contained in the
+       * spec envelopes data package. Thus, the first messages up to and including
+       * TestCase envelopes are the ones we need to re-hydrate the broadcaster.
+       */
+      const iLastTestCase = state.messages.current.findLastIndex(
+        (message) => message.testCase,
+      );
+
+      const specEnvelopes = state.messages.current.slice(0, iLastTestCase + 1);
+
+      for (const message of specEnvelopes) {
+        broadcaster.emit("envelope", message);
+      }
+
+      state.pretty = {
+        enabled: true,
+        writable,
+        broadcaster,
+      };
+    }
+
+    // Discard messages of previous test, which is being re-run.
+    state.messages.current = state.messages.current.slice(
+      0,
+      iLastTestCaseStarted,
+    );
   }
 
   if (state.pretty.enabled) {

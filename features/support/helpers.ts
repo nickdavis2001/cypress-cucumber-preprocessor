@@ -48,6 +48,8 @@ export function prepareMessagesReport(messages: any) {
     "testStepId",
     "testCaseId",
     "testCaseStartedId",
+    "testRunStartedId",
+    "testRunHookStartedId",
     "pickleId",
     "pickleStepId",
     "astNodeId",
